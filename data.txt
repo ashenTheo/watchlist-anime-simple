@@ -1,8 +1,9 @@
-Frieren|1|28|9.5|completed|finished
-Frieren|2|10|8.5|belum release|watch later
-Hunter x Hunter|1|148|9.5|hiatus|watching 100/148
-majo no tabitabi|1|12|10.0|completed|watch later
-One Piece|1|1100|9.0|onair|watching 500/1100
+black clover|1|100|8.0|completed|watching 80/100
 Solo Leveling|2|13|8.0|completed|dropped 5/13
 Spy x Family|1|12|8.4|completed|finished
+Frieren|2|10|8.5|belum release|watch later
 Spy x Family|2|12|8.5|completed|finished
+One Piece|1|1100|9.0|onair|watching 500/1100
+Hunter x Hunter|1|148|9.5|hiatus|watching 100/148
+Frieren|1|28|9.5|completed|finished
+majo no tabitabi|1|12|10.0|completed|watch later

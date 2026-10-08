@@ -8,11 +8,11 @@ from anime import (NAME, EPISODES, RATING, RELEASE, WATCH,
                    add_anime, edit_anime, delete_anime)
 
 
-def menu_search(data, sorted_by_name):
-    print("\n=== Search ===")
-    print("1. Linear search (release status)")
-    print("2. Linear search (watch status)")
-    print("3. Binary search (name)")
+def menu_search(data):
+    print("\n=== Search (linear search) ===")
+    print("1. Release status")
+    print("2. Watch status")
+    print("3. Name")
     choice = ask_int("Choose", 1, 3)
 
     if choice == 1:
@@ -22,20 +22,15 @@ def menu_search(data, sorted_by_name):
         value = ask_choice("Watch status:", WATCH_OPTIONS)
         result = algoritma.linear_search(data, WATCH, value)
     else:
-        if not sorted_by_name:
-            print("Binary search needs sorted data.")
-            print("Please sort by name first using the Sort menu.")
-            return
-        name = ask_text("Name to search")
-        result = algoritma.binary_search(data, name)
+        text = ask_text("Name to search")
+        result = algoritma.linear_search_name(data, text)
 
     print("\nFound", len(result), "result(s).")
     show_rows(data, result)
 
 
 def menu_sort(data):
-    """Sorts the data (always ascending). Returns True if the data is now sorted by name."""
-    print("\n=== Sort ===")
+    print("\n=== Sort (bubble sort, smallest to largest) ===")
     print("1. Rating")
     print("2. Name")
     print("3. Number of episodes")
@@ -51,12 +46,9 @@ def menu_sort(data):
     show = ask_choice("Show the sorting process?", ["yes", "no"])
     show_process = (show == "yes")
 
-    algoritma.selection_sort(data, column, show_process)
+    algoritma.bubble_sort(data, column, show_process)
     print("\nSorted!")
     show_all(data)
-
-    
-    return column == NAME
 
 
 def menu_statistics(data):
@@ -81,7 +73,6 @@ def menu_statistics(data):
 
 def main():
     data = storage.load_data()
-    sorted_by_name = False  
 
     while True:
         print("\n===== ANIME TRACKER =====")
@@ -100,26 +91,22 @@ def main():
 
         elif choice == 2:
             add_anime(data)
-            sorted_by_name = False   
             storage.save_data(data)
 
         elif choice == 3:
-            name_changed = edit_anime(data)
-            if name_changed:
-                sorted_by_name = False
+            edit_anime(data)
             storage.save_data(data)
 
         elif choice == 4:
             deleted = delete_anime(data)
             if deleted:
-                sorted_by_name = False
                 storage.save_data(data)
 
         elif choice == 5:
-            menu_search(data, sorted_by_name)
+            menu_search(data)
 
         elif choice == 6:
-            sorted_by_name = menu_sort(data)
+            menu_sort(data)
             storage.save_data(data)
 
         elif choice == 7:
